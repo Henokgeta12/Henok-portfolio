@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henok Asfaw | Backend Developer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- ScrollReveal for scroll animations -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- Typed.js for typing effect -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- Three.js for 3D graphics -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.min.js"></script>
+
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="container mt-5">
+        <!-- Flash Message Display -->
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-80 p-4 shadow-md z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold gradient-text">Henok Asfaw</h1>
+            <div class="space-x-8">
+                <a href="#about" class="text-white hover:text-blue-400">About</a>
+                <a href="#skills" class="text-white hover:text-blue-400">Skills</a>
+                <a href="#projects" class="text-white hover:text-blue-400">Projects</a>
+                <a href="#certifications" class="text-white hover:text-blue-400">Certifications</a>
+                <a href="#contact" class="text-white hover:text-blue-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero h-screen flex flex-col justify-center items-center px-10 text-center relative">
+        <img src="{{ url_for('static', filename='img/henok.jpg') }}" alt="Henok Asfaw" class="rounded-full w-48 h-48 border-4 border-white shadow-lg mb-4">
+        <h1 class="text-5xl font-bold mt-6">Henok Asfaw</h1>
+        <p class="text-xl mt-4"><span id="typed"></span></p>
+        <a href="#contact" class="mt-6 inline-block px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-400">
+            Get in Touch
+        </a>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="py-20 text-center">
+        <div class="max-w-3xl mx-auto p-8 bg-gray-800 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold">About Me</h2>
+            <p class="mt-4">
+                I am Henok Asfaw Getachew, a dedicated and passionate backend developer with a strong foundation in building scalable and efficient software solutions. I hold a diploma in IT with a focus on Hardware and Networking from CPU College and have recently graduated from the ALX Software Engineering bootcamp, recognized as one of the most high-quality and rigorous software engineering programs available. Additionally, I have earned an AI Career Essentials certificate from ALX Africa. My expertise lies in leveraging backend technologies to create robust and high-performance applications. I am committed to continuous learning and staying updated with the latest industry trends to deliver innovative solutions.
+            </p>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="certificate py-16 bg-gray-900 text-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Certifications</h2>
+            <p class="text-lg mb-12 max-w-2xl mx-auto">
+                These certifications validate my technical expertise and continuous learning in AI, software engineering, and backend development.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- AI Career Essentials Certificate -->
+                <div class="glass p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-2">AI Career Essentials</h3>
+                    <p class="text-gray-300 mb-4">
+                        Awarded by <strong>ALX Africa</strong>, this certification empowered me with practical knowledge in AI models, including generative AI. I learned how to harness AI technologies effectively to build smarter solutions.
+                    </p>
+                    <a href="https://drive.google.com/file/d/12kTCoo9gpGNflkbFtHCwlFB-xOw0e9xX/view?usp=sharing" class="text-blue-400" target="_blank">View Certificate</a>
+                </div>
+
+                <!-- ALX Software Engineering Certificate -->
+                <div class="glass p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-2">ALX Software Engineering</h3>
+                    <p class="text-gray-300 mb-4">
+                        A <strong>12-month intensive program</strong> from ALX Software Engineering, where I mastered building scalable web applications, specializing in backend development. This experience sharpened my skills in Python, Flask, and database management.
+                    </p>
+                    <a href="https://drive.google.com/file/d/1TP0SKzfyUaY02n0Q02IOhzlJ_MkVGIxR/view?usp=drive_link" class="text-blue-400" target="_blank">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 text-center">
+        <h2 class="text-4xl font-bold">Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fab fa-html5 text-4xl mb-2"></i>
+                <p>HTML5</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fab fa-css3-alt text-4xl mb-2"></i>
+                <p>CSS3</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fab fa-js-square text-4xl mb-2"></i>
+                <p>JavaScript</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fab fa-python text-4xl mb-2"></i>
+                <p>Python</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fab fa-node-js text-4xl mb-2"></i>
+                <p>Node.js</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fas fa-database text-4xl mb-2"></i>
+                <p>MySQL</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fas fa-leaf text-4xl mb-2"></i> <!-- Using a leaf icon for MongoDB as a placeholder -->
+                <p>MongoDB</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fas fa-code text-4xl mb-2"></i>
+                <p>MERN Stack</p>
+            </div>
+            <div class="p-4 bg-gray-800 rounded-lg flex flex-col items-center">
+                <i class="fab fa-django text-4xl mb-2"></i> <!-- FontAwesome does not have a Django icon, using a placeholder -->
+                <p>Django</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="container mx-auto text-center">
+        <h2 class="text-3xl font-semibold">Projects</h2>
+        <div class="grid md:grid-cols-2 gap-6 mt-6">
+            <div class="glass p-6">
+                <h3 class="text-xl font-semibold">Collaborative Study Platform</h3>
+                <p class="mt-2">
+                    A robust Flask-based study platform designed to facilitate real-time collaboration among students and educators. This application enhances learning experiences by enabling seamless interaction and resource sharing.
+                </p>
+                <div class="mt-4 space-x-4">
+                    <a href="https://drive.google.com/file/d/18ZXthOZfxMi9mtO58TYCE2fWjV789B8J/view?usp=drive_link" class="text-blue-400">Watch Demo</a>
+                    <a href="https://github.com/Henokgeta12/CollabLearn" class="text-blue-400"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+            <div class="glass p-6">
+                <h3 class="text-xl font-semibold">Airbnb Clone</h3>
+                <p class="mt-2">
+                    A comprehensive full-stack replica of Airbnb, developed using modern web technologies. This project showcases my ability to build complex, feature-rich applications with a focus on user experience and scalability.
+                </p>
+                <div class="mt-4">
+                    <a href="https://github.com/Henokgeta12/AirBnB_clone_v3" class="text-blue-400"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+            <div class="glass p-6">
+                <h3 class="text-xl font-semibold">Simple Shell using C</h3>
+                <p class="mt-2">
+                    A simple shell application written in C programming language, providing a basic command-line interface for executing commands and interacting with the operating system.
+                </p>
+                <div class="mt-4">
+                    <a href="https://github.com/Henokgeta12/simple_shell" class="text-blue-400"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+            <div class="glass p-6">
+                <h3 class="text-xl font-semibold">Hash Table Implementation in C</h3>
+                <p class="mt-2">
+                    A hash table implementation written in C programming language, providing efficient storage and retrieval of key-value pairs.
+                </p>
+                <div class="mt-4">
+                    <a href="https://github.com/Henokgeta12/hash-table" class="text-blue-400"><i class="fa-brands fa-github"></i> View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 text-center">
+        <h2 class="text-4xl font-bold">Contact Me</h2>
+        <form id="contact-form" class="max-w-lg mx-auto mt-8 space-y-4" action="{{ url_for('contact') }}" method="POST">
+            <input id="username" name="username" placeholder="Your Name" required class="w-full p-3 rounded-lg bg-gray-800 text-white">
+            <input  id="email" name="email" type="email" placeholder="Your Email" required class="w-full p-3 rounded-lg bg-gray-800 text-white">
+            <textarea id="message" name="message" placeholder="Your Message" required class="w-full p-3 rounded-lg bg-gray-800 text-white"></textarea>
+            <button type="submit" class="px-6 py-3 bg-blue-500 rounded-lg hover:bg-blue-400">Send Message</button>
+        </form>
+        <div class="flex justify-center space-x-4 mt-8">
+            <a href="https://github.com/Henokgeta12" class="text-white hover:text-blue-400"><i class="fab fa-github fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/henok-asfaw" class="text-white hover:text-blue-400"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="mailto:henokasfaw67@gmail.com" class="text-blue-400"><i class="fa-solid fa-envelope"></i> Email Me</a>
+        </div>
+    </section>
+
+    <script>
+        gsap.from("#contact-form", { opacity: 0, scale: 0.9, duration: 1 });
+        // Typed.js animation
+        new Typed('#typed', {
+            strings: ['Full-Stack Web Development', 'Python Developer', 'Backend Developer', 'Passionate about IT and Networking', 'Tech Enthusiast'],
+            typeSpeed: 50,
+            backSpeed: 25,
+            loop: true
+        });
+
+        // Three.js interactive background
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#bgCanvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0x0077ff, wireframe: true });
+        const knot = new THREE.Mesh(geometry, material);
+        scene.add(knot);
+
+        camera.position.z = 50;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            knot.rotation.x += 0.01;
+            knot.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // GSAP animations
+        gsap.from('.hero h1', { duration: 1, y: -50, opacity: 0, ease: 'power1.out' });
+        gsap.from('.hero p', { duration: 1, y: 50, opacity: 0, delay: 0.5, ease: 'power1.out' });
+
+        // ScrollReveal animations
+        ScrollReveal().reveal('#about, #skills, #projects', { delay: 300, distance: '50px', origin: 'bottom' });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
